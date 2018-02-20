@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  Handler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/handler
+      Runtime: go1.x
+      Tracing: Active
+      Environment:
+        Variables:
+          URL: https://sbstjn.com/feed.xml
+  Role: 
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: Allow
+            Principal: { Service: appsync.amazonaws.com }
+            Action: [ "sts:AssumeRole" ]
+      Policies: 
+        - PolicyName: allow-access-to-lambda-from-appsync
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - Effect: Allow
+                Action: lambda:invokeFunction
+                Resource:
+                  - Fn::GetAtt: [ Handler, Arn ]
+                  - Fn::Join:
+                    - ''
+                    - - Fn::GetAtt: [ Handler, Arn ]
+                      - ':*'
+Outputs:
+  HandlerArn:
+    Description: ARN for Go Handler
+    Value:
+      Fn::GetAtt:
+      - Handler
+      - Arn
+  RoleArn:
+    Description: ARN for IAM Role
+    Value:
+      Fn::GetAtt:
+      - Role
+      - Arn

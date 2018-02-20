@@ -1,0 +1,13 @@
+type Post {
+	url: String
+	title: String
+	date: String
+}
+
+type Query {
+	feed: [Post]
+}
+
+schema {
+	query: Query
+}
