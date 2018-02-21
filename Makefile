@@ -13,7 +13,7 @@ build: clean
 	GOOS=linux go build -o dist/handler ./...
 
 configure:
-	aws s3api create-bucket \
+	@aws s3api create-bucket \
 		--bucket $(AWS_BUCKET_NAME) \
 		--region $(AWS_REGION)
 
