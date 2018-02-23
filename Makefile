@@ -15,6 +15,7 @@ build: clean
 configure:
 	@aws s3api create-bucket \
 		--bucket $(AWS_BUCKET_NAME) \
+		--create-bucket-configuration LocationConstraint=$(AWS_REGION) \
 		--region $(AWS_REGION)
 
 package: build
