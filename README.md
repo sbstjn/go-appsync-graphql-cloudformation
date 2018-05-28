@@ -1,4 +1,4 @@
-# AppSync GraphQL RSS Proxy
+# AppSync GraphQL API with CloudFormation & SAM
 
 Example project for creating an AWS AppSync GraphQL API with a custom AWS Lambda resolver in Go. All resources are created using the [AWS Serverless Application Model](https://github.com/awslabs/serverless-application-model) and [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apikey.html) resources.
 
