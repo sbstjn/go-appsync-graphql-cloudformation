@@ -16,10 +16,10 @@ clean:
 	rm -rf dist
 
 install:
-	dep ensure
+	@ dep ensure
 
 build:
-	go build -o dist/handler_$(GOOS) ./...
+	@ go build -o dist/handler_$(GOOS) ./...
 
 build-lambda: 
 	@ GOOS=linux make build
