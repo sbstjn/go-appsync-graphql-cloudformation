@@ -1,6 +1,6 @@
 # AppSync GraphQL RSS Proxy
 
-Example project to deploy an AWS AppSync GraphQL API. The included Lambda function uses Go to parse a RSS feed and works as a custom data source for AppSync.
+Example project for using [AWS Serverless Application Model](https://github.com/awslabs/serverless-application-model) to deploy an AWS AppSync GraphQL API w/ Golang. The included Lambda function uses Go to parse a RSS feed and works as a custom data source for AppSync.
 
 ## Instructions
 
