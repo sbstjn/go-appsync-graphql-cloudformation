@@ -1,72 +1,62 @@
-include .env
+PROJECT_NAME ?= appsync-graphql-rss-proxy-go
+ENV ?= stable
 
-SCHEMA=`cat schema.graphql`
+AWS_BUCKET_NAME ?= $(PROJECT_NAME)-artifacts-$(ENV)
+AWS_STACK_NAME ?= $(PROJECT_NAME)-stack-$(ENV)
+AWS_REGION ?= eu-west-1
+GOOS ?= darwin
+
+FILE_TEMPLATE = template.yml
+FILE_PACKAGE = package.yml
+
+SCHEMA := $(shell cat schema.graphql)
+EXPIRATION = $(shell echo $$(( $(shell date +%s) + 604800 ))) # 7 days from now (timestamp)
 
 clean:
 	rm -rf dist
 
-dependencies:
-	go get github.com/SlyMarbo/rss
-	go get github.com/axgle/mahonia
+install:
+	@ dep ensure
 
-build: clean
-	GOOS=linux go build -o dist/handler ./...
+build:
+	@ go build -o dist/handler_$(GOOS) ./...
+
+build-lambda: 
+	@ GOOS=linux make build
 
 configure:
-	@aws s3api create-bucket \
+	@ aws s3api create-bucket \
 		--bucket $(AWS_BUCKET_NAME) \
-		--create-bucket-configuration LocationConstraint=$(AWS_REGION) \
-		--region $(AWS_REGION)
+		--region $(AWS_REGION) \
+		--create-bucket-configuration LocationConstraint=$(AWS_REGION)
 
-package: build
-	@aws cloudformation package \
-		--template-file template.yml \
+package:
+	@ aws cloudformation package \
+		--template-file $(FILE_TEMPLATE) \
 		--s3-bucket $(AWS_BUCKET_NAME) \
 		--region $(AWS_REGION) \
-		--output-template-file package.yml
+		--output-template-file $(FILE_PACKAGE)
 
 deploy:
-	@aws cloudformation deploy \
-		--template-file package.yml \
+	@ aws cloudformation deploy \
+		--template-file $(FILE_PACKAGE) \
 		--region $(AWS_REGION) \
 		--capabilities CAPABILITY_IAM \
-		--stack-name $(AWS_STACK_NAME)
+		--stack-name $(AWS_STACK_NAME) \
+		--force-upload \
+		--parameter-overrides \
+			ParamProjectName=$(PROJECT_NAME) \
+			ParamSchema="$(SCHEMA)" \
+			ParamKeyExpiration=$(EXPIRATION) \
+			ParamENV=$(ENV)
 
 describe:
-	@aws cloudformation describe-stacks \
-		--region $(AWS_REGION) \
-		--stack-name $(AWS_STACK_NAME) \
+	@ aws cloudformation describe-stacks \
+			--region $(AWS_REGION) \
+			--stack-name $(AWS_STACK_NAME)
 
 outputs:
-	@make describe | jq -r '.Stacks[0].Outputs'
+	@ make describe \
+		| jq -r '.Stacks[0].Outputs'
 
-create-api:
-	@aws appsync create-graphql-api \
-		--name $(AWS_STACK_NAME) \
-		--authentication-type API_KEY | jq
-
-create-api-schema:
-	@aws appsync start-schema-creation \
-		--api-id $(API_ID) \
-		--definition "$(SCHEMA)" | jq
-
-create-api-data-source:
-	@aws appsync create-data-source \
-		--api-id $(API_ID) \
-		--name RSSProxy \
-		--type AWS_LAMBDA \
-		--service-role-arn $(ROLE) \
-		--lambda-config "lambdaFunctionArn=$(LAMBDA)" | jq
-
-create-api-resolver:
-	@aws appsync create-resolver \
-		--api-id $(API_ID) \
-		--type-name Query \
-		--field-name feed \
-		--data-source-name RSSProxy \
-		--request-mapping-template '{ "version" : "2017-02-28", "operation": "Invoke", "payload": $$util.toJson($$context.arguments) }' \
-		--response-mapping-template '$$util.toJson($$context.result)' | jq
-
-create-api-key:
-	@aws appsync create-api-key \
-		--api-id $(API_ID) | jq
+.PHONY: clean install build build-lambda configure package deploy describe output
