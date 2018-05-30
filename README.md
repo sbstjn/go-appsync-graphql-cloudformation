@@ -4,7 +4,7 @@ Example project for creating an AWS AppSync GraphQL API with a custom AWS Lambda
 
 ## Instructions
 
-[https://sbstjn.com/aws-appsync-graphql-rss-feed-golang-lambda.html](https://sbstjn.com/aws-appsync-graphql-rss-feed-golang-lambda.html)
+[https://sbstjn.com/aws-appsync-graphql-with-cloudformation.html](https://sbstjn.com/aws-appsync-graphql-with-cloudformation.html)
 
 ## License
 
