@@ -1,4 +1,4 @@
-# AppSync GraphQL API with CloudFormation & SAM
+# AppSync GraphQL API w/ CloudFormation & SAM
 
 [![MIT License](https://badgen.now.sh/badge/License/MIT/blue)](https://github.com/sbstjn/go-appsync-graphql-cloudformation/blob/master/LICENSE.md)
 [![Read Tutorial](https://badgen.now.sh/badge/Read/Tutorial/orange)](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html)
