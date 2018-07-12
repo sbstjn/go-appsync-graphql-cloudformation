@@ -3,11 +3,11 @@
 [![MIT License](https://badgen.now.sh/badge/License/MIT/blue)](https://github.com/sbstjn/go-appsync-graphql-cloudformation/blob/master/LICENSE.md)
 [![Read Tutorial](https://badgen.now.sh/badge/Read/Tutorial/orange)](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html)
 
-**Important:** *This is a . very basic and **outdated** example project to use AWS AppSync with CloudFormation, [AWS Serverless Application Model](https://github.com/awslabs/serverless-application-model), and AWS Lambda functions in Go.*
+**Important:** *This is a . very basic and **outdated** example project to use AWS AppSync with CloudFormation, AWS Serverless Application Model, and resolvers with AWS Lambda functions in Go.*
 
-Please check out the [appsync-resolvers-example](https://github.com/sbstjn/appsync-resolvers-example) project for a simple and elegant example project using the [appsync-resolvers](https://github.com/sbstjn/appsync-resolvers) package to manage your GraphQL API and resolvers using Go!
+Please check the [appsync-resolvers-example](https://github.com/sbstjn/appsync-resolvers-example) project for a more simple and elegant example project using the [appsync-resolvers](https://github.com/sbstjn/appsync-resolvers) package to manage your GraphQL API and resolvers using Go!
 
-See my post [Serverless GraphQL with AWS AppSync and Lambda](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html) on [sbstjn.com](https://sbstjn.com) for a detailed guide how to set up a GraphQL API using AWS AppSync.
+You should read my [Serverless GraphQL with AWS AppSync and Lambda](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html) post on [sbstjn.com](https://sbstjn.com) for a detailed guide how to set up a GraphQL API using AWS AppSync and the [appsync-resolvers](https://github.com/sbstjn/appsync-resolvers) package.
 
 ## License
 
