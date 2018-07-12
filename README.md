@@ -1,12 +1,13 @@
 # AppSync GraphQL API with CloudFormation & SAM
 
-Make sure to check out the [appsync-resolvers-example](https://github.com/sbstjn/appsync-resolvers-example) project for a simple example project using the [appsync-resolvers](https://github.com/sbstjn/appsync-resolvers) package to manage your GraphQL API and resolvers! You can read more about the package on [sbstjn.com](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html).
+[![MIT License](https://badgen.now.sh/badge/License/MIT/blue)](https://github.com/sbstjn/go-appsync-graphql-cloudformation/blob/master/LICENSE.md)
+[![Read Tutorial](https://badgen.now.sh/badge/Read/Tutorial/orange)](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html)
 
-**Outdated** example project for creating an AWS AppSync GraphQL API with a custom AWS Lambda resolver in Go. All resources are created using the [AWS Serverless Application Model](https://github.com/awslabs/serverless-application-model) and [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-apikey.html) resources.
+**Important:** *Very basic and **outdated** example project to use AWS AppSync with CloudFormation, [AWS Serverless Application Model](https://github.com/awslabs/serverless-application-model), and AWS Lambda functions in Go.*
 
-## Instructions
+Please check out the [appsync-resolvers-example](https://github.com/sbstjn/appsync-resolvers-example) project for a simple and elegant example project using the [appsync-resolvers](https://github.com/sbstjn/appsync-resolvers) package to manage your GraphQL API and resolvers using Go!
 
-[https://sbstjn.com/aws-appsync-graphql-with-cloudformation.html](https://sbstjn.com/aws-appsync-graphql-with-cloudformation.html)
+See my post [Serverless GraphQL with AWS AppSync and Lambda](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html) on [sbstjn.com](https://sbstjn.com) for a detailed guide how to set up a GraphQL API using AWS AppSync.
 
 ## License
 
