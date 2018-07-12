@@ -3,7 +3,7 @@
 [![MIT License](https://badgen.now.sh/badge/License/MIT/blue)](https://github.com/sbstjn/go-appsync-graphql-cloudformation/blob/master/LICENSE.md)
 [![Read Tutorial](https://badgen.now.sh/badge/Read/Tutorial/orange)](https://sbstjn.com/serverless-graphql-with-appsync-and-lambda.html)
 
-**Important:** *Very basic and **outdated** example project to use AWS AppSync with CloudFormation, [AWS Serverless Application Model](https://github.com/awslabs/serverless-application-model), and AWS Lambda functions in Go.*
+**Important:** *This is a . very basic and **outdated** example project to use AWS AppSync with CloudFormation, [AWS Serverless Application Model](https://github.com/awslabs/serverless-application-model), and AWS Lambda functions in Go.*
 
 Please check out the [appsync-resolvers-example](https://github.com/sbstjn/appsync-resolvers-example) project for a simple and elegant example project using the [appsync-resolvers](https://github.com/sbstjn/appsync-resolvers) package to manage your GraphQL API and resolvers using Go!
 
